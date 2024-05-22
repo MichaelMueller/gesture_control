@@ -2,13 +2,13 @@
     "cam": 0,
     "model_complexity": 1,
     "smoothing_factor": 0.25,
-    "ratio_tips_closed": 0.19,
+    "ratio_tips_closed": 0.25,
     "ratio_tips_closing": 0.7,
     "max_consec_frames_for_click": 7,
     "min_detection_confidence": 0.66,
     "min_tracking_confidence": 0.66,
     "simulate_click_by_mouse_down_and_up": true,
     "max_output_win_size": 400,
-    "frame_resize_to_width": 640,
+    "frame_resize_to_width": null,
     "app_name": "Gesture Control App"
 }

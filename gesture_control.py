@@ -168,12 +168,15 @@ def process_frame(frame, hands, smoothing_factor, start_time, num_frames, avg_fp
     # Print FPS on frame
     interaction_enabled_txt = "Interaction enabled" if interaction_enabled else "Interaction disabled"
     measurements_text = f'{interaction_enabled_txt}, FPS: {current_fps:.2f}'    
-    if ratio_index_thumb_wrist:
-        measurements_text +=  f', index tip: {ratio_index_thumb_wrist:.2f}'
-    if ratio_middle_thumb_wrist:
-        measurements_text +=  f', middle tip: {ratio_middle_thumb_wrist:.2f}'
-    font_size = 0.75
+    font_size = 0.6
     cv2.putText(frame, measurements_text, (20, 40), cv2.FONT_HERSHEY_SIMPLEX, font_size, (255, 255, 0), 2, cv2.LINE_AA)
+    
+    measurements_text = ""
+    if ratio_index_thumb_wrist:
+        measurements_text +=  f'Distances: index tip={ratio_index_thumb_wrist:.2f}'
+    if ratio_middle_thumb_wrist:
+        measurements_text +=  f', middle tip={ratio_middle_thumb_wrist:.2f}'
+    cv2.putText(frame, measurements_text, (20, 80), cv2.FONT_HERSHEY_SIMPLEX, font_size, (255, 255, 0), 2, cv2.LINE_AA)
     
     if button != None:
         state = "No Hand detected"
@@ -183,9 +186,9 @@ def process_frame(frame, hands, smoothing_factor, start_time, num_frames, avg_fp
             state = "Tips closed"
         elif tips_closing:
             state = "Locked"
-        cv2.putText(frame, f'State: {state}', (20, 80), cv2.FONT_HERSHEY_SIMPLEX, font_size, (0, 255, 0), 2, cv2.LINE_AA)
+        cv2.putText(frame, f'State: {state}', (20, 120), cv2.FONT_HERSHEY_SIMPLEX, font_size, (0, 255, 0), 2, cv2.LINE_AA)
         if mouse_down is True:
-            cv2.putText(frame, f'{button} Mouse pressed!', (20, 120), cv2.FONT_HERSHEY_SIMPLEX, font_size, (0, 0, 255), 2, cv2.LINE_AA)
+            cv2.putText(frame, f'{button} Mouse pressed!', (20, 160), cv2.FONT_HERSHEY_SIMPLEX, font_size, (0, 0, 255), 2, cv2.LINE_AA)
     return frame, tips_together, num_frames, avg_fps
 
 def resize_keep_aspect_ratio(image, width):
